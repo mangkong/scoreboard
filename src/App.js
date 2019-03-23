@@ -27,7 +27,12 @@ class App extends React.Component {
   handleChangeScore = (id, delta) => {
     console.log(id,delta);
     this.setState(prevState=> {
-      players: prevState.players.find(item => item.id == id)
+      prevState.players.forEach(item=>{
+        if(item.id === id){
+          item.score += delta;
+        }
+      })
+      return {players:[...prevState.players]}
     })
   }
   render() {
