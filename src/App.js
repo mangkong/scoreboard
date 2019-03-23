@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   handleChangeScore = (id, delta) => {
-    console.log(id,delta);
     this.setState(prevState=> {
       prevState.players.forEach(item=>{
         if(item.id === id){
@@ -38,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="scoreboard">
-        <Header title="My scoreboard" totalPlayers={1 + 10}/>
+        <Header title="My scoreboard" totalPlayers={1 + 10} players={this.state.players}/>
         {
           this.state.players.map(player => (
             // score={player.score}
