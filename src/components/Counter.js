@@ -2,9 +2,6 @@ import React from 'react';
 
 export class Counter
   extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   /*
   decrementScore = () => {
     this.setState(prevState => {

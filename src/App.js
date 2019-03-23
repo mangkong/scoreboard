@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import {Header} from "./components/Header";
 import {Player} from "./components/Player";
+import {AddPlayerForm} from "./components/AddPlayerForm";
 
-class App extends React.Component {
+class App extends Component {
+  max_player_id = 4;
   state = {
     players: [
       {name: 'LDK', score: 0, id: 1},
@@ -14,11 +16,8 @@ class App extends React.Component {
   }
 
   handleRemovePlayer = (id) => {
-    console.log(id);
     // 해당 id를 삭제
-    this.setState
-    (
-      prevState => ({
+    this.setState(prevState => ({
         players: prevState.players.filter(item => item.id !== id)
       })
     )
@@ -33,6 +32,12 @@ class App extends React.Component {
       })
       return {players:[...prevState.players]}
     })
+  }
+
+  handleAddPlayer = (name) =>{
+    this.setState(prevState=>({
+      players : [...prevState.players,{name:name,score:0,id:++this.max_player_id}]
+    }))
   }
   render() {
     return (
@@ -49,6 +54,7 @@ class App extends React.Component {
             />
           ))
         }
+        <AddPlayerForm handleAddPlayer={this.handleAddPlayer}/>
       </div>
     );
   }
