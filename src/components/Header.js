@@ -2,13 +2,16 @@ import React from 'react';
 import {Statistics} from "./Statistics";
 import {Stopwatch} from "./Stopwatch";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {updateTitle} from "../redux/action";
+import {playerReducer} from "../redux/reducers/player";
 
-export const Header = ({title, players}) => {
+const Header = ({title, players ,updateTitle}) => {
   // const  = props; // destruct assignment
   return (
     <header>
       <Statistics players={players}/>
-      <h1>{title}</h1>
+      <h1 onClick={()=> updateTitle('Store Title')}>{title}</h1>
       <Stopwatch/>
     </header>
   )
@@ -26,3 +29,10 @@ Header.propTypes = {
 Header.defaultProps = {
   title: 'Scoreboard'
 }
+
+// store의 title을 props로 연결
+const mapStateToProps = (state) => ({
+  title: state.playerReducer.title
+});
+
+export default connect(mapStateToProps,{updateTitle:updateTitle})(Header);

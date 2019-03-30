@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {addPlayer} from "../redux/action";
 
 export class AddPlayerForm extends React.Component {
   textInput = React.createRef();
@@ -17,7 +19,7 @@ export class AddPlayerForm extends React.Component {
   handleSubmit = (e) => {
     // submit의 기본이벤트 막기
     e.preventDefault();
-    this.props.handleAddPlayer(this.textInput.current.value);
+    this.props.addPlayer(this.textInput.current.value);
     e.currentTarget.reset();
   }
 
@@ -31,3 +33,5 @@ export class AddPlayerForm extends React.Component {
     );
   }
 }
+
+export default connect(null,{addPlayer})(AddPlayerForm);
