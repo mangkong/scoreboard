@@ -5,8 +5,9 @@ import {Player} from "./components/Player";
 import AddPlayerForm from "./components/AddPlayerForm";
 import {playerReducer} from "./redux/reducers/player";
 import {connect} from "react-redux";
+import {ScoreBoard} from "./pages/ScoreBoard";
 
-class App extends Component {
+class ScoreBoard extends Component {
   max_player_id = 4;
 
   handleRemovePlayer = (id) => {
@@ -60,4 +61,4 @@ const mapStateToProps = (state) => ({
 
 // 1. Header() 펑션 컴포넌트를 호출
 // 2. 속성을 json으로 전달한다. {title: "My Scoreboard", totalPlayers: 11}
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(ScoreBoard);

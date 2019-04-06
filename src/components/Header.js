@@ -3,15 +3,16 @@ import {Statistics} from "./Statistics";
 import {Stopwatch} from "./Stopwatch";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {updateTitle} from "../redux/action";
-import {playerReducer} from "../redux/reducers/player";
+import {updateTitle} from "../redux/actions";
 
-const Header = ({title, players ,updateTitle}) => {
+import styles from '../pages/scoreboard/Scoreboard.module.css';
+
+const Header = ({title, players, updateTitle}) => {
   // const  = props; // destruct assignment
   return (
-    <header>
+    <header className={styles.header}>
       <Statistics players={players}/>
-      <h1 onClick={()=> updateTitle('Store Title')}>{title}</h1>
+      <h1 onClick={() => updateTitle('Store Title')}>{title}</h1>
       <Stopwatch/>
     </header>
   )
@@ -35,4 +36,4 @@ const mapStateToProps = (state) => ({
   title: state.playerReducer.title
 });
 
-export default connect(mapStateToProps,{updateTitle:updateTitle})(Header);
+export default connect(mapStateToProps, {updateTitle})(Header);

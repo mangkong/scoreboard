@@ -1,9 +1,9 @@
-import {ADD_PLAYER, UPDATE_TITLE} from "../actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER, UPDATE_TITLE} from "../actionTypes";
 
 let maxId = 4;
 
-const playerinitialState = {
-  title :'My Scoreboard',
+const playerInitialState = {
+  title: 'My Scoreboard',
   players: [
     {name: "LDK", score: 0, id: 1},
     {name: "HONG", score: 0, id: 2},
@@ -12,20 +12,35 @@ const playerinitialState = {
   ]
 }
 
-export const playerReducer = (state = playerinitialState,action) => {
+export const playerReducer = (state = playerInitialState, action) => {
   switch (action.type) {
-    case UPDATE_TITLE :
+    case UPDATE_TITLE:
       return {
         ...state,
-        title:action.title
+        title: action.title
       }
-    case ADD_PLAYER :
+    case ADD_PLAYER:
       return {
         ...state,
         players: [
           ...state.players,
-          {name:action.name, score : 0,id:++maxId}
+          {name: action.name, score: 0, id: ++maxId}
         ]
+      }
+    case CHANGE_SCORE:
+      state.players.forEach(player => {
+        if (player.id === action.id) {
+          player.score += action.delta;
+        }
+      })
+      return {
+        ...state,
+        players: [...state.players]
+      }
+    case REMOVE_PLAYER:
+      return {
+        ...state,
+        players: state.players.filter(player => player.id !== action.id)
       }
     default:
       return state;

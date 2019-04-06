@@ -8,7 +8,7 @@ export class Heroes extends React.Component {
   render() {
     return (
       <div>
-        Heros
+        Heroes works.
       </div>
     );
   }
