@@ -4,6 +4,8 @@ import Pagination from 'rc-pagination';
 
 import styles from './Heroes.module.scss';
 import 'rc-pagination/dist/rc-pagination.css'
+import {Hero} from "../hero/Hero";
+import {Route, Switch} from "react-router-dom";
 
 export class Heroes extends React.Component {
     constructor(props) {
@@ -23,14 +25,24 @@ export class Heroes extends React.Component {
         this.getHeroes();
     }
 
+    handleClick = (event, hero_id) => {
+        event.preventDefault();
+        this.props.history.push(`/heroes/hero/${hero_id}`);
+    }
+
     render() {
         return (
             <div>
+                {/*네스티드 된 상세화면*/}
+                <Switch>
+                    <Route path="/heroes/hero/:hero_id" component={Hero}></Route>
+                </Switch>
+
                 <div className="row">
                     {
                         this.state.heroes.map(hero => (
                             <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-1 p-sm-2 p-md-3"
-                                 key={hero.hero_id}>
+                                 key={hero.hero_id} onClick={(e) => this.handleClick(e, hero.hero_id)}>
                                 <div className="card">
                                     <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
                                          className="card-img-top" alt={hero.name}></img>
