@@ -4,24 +4,26 @@ import {Home} from "./Home";
 import {Heroes} from "./heroes/Heroes";
 import Scoreboard from "./scoreboard/Scoreboard";
 import {Menu} from "./Menu";
+import {Hero} from "./hero/Hero";
 
 export class Root extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (
-      <BrowserRouter>
-        <Menu />
-        <div className="container" style={{backgroundColor: '#ffffff'}}>
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/heroes" component={Heroes}></Route>
-          <Route path="/scoreboard" component={Scoreboard}></Route>
-        </Switch>
-        </div>
-      </BrowserRouter>
-    );
-  }
+    render() {
+        return (
+            <BrowserRouter>
+                <Menu />
+                <div className="container" style={{backgroundColor: '#ffffff'}}>
+                    <Switch>
+                        <Route exact path="/" component={Home}></Route>
+                        <Route path="/heroes" component={Heroes}></Route>
+                        <Route path="/scoreboard" component={Scoreboard}></Route>
+                        <Route path="/hero/:hero_id" component={Hero}></Route>
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        );
+    }
 }

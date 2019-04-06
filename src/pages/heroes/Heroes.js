@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from "axios";
+import axios from 'axios';
 import Pagination from 'rc-pagination';
 
 import styles from './Heroes.module.scss';
-import 'rc-pagination/dist/rc-pagination.css';
+import 'rc-pagination/dist/rc-pagination.css'
 
 export class Heroes extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export class Heroes extends React.Component {
         this.state = {
             currentPage: 1, // 페이지 인덱스, 1부터 시작
             totalCount: 115, // 전체 갯수
-            pageSize: 10, //한페이지에 보여주는 갯수
+            pageSize: 10, // 한페이지에 보여주는 갯수
             heroes: []
         }
     }
@@ -29,11 +29,11 @@ export class Heroes extends React.Component {
                 <div className="row">
                     {
                         this.state.heroes.map(hero => (
-                            <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                                <div className="card mb-3" key={hero.hero_id}>
-                                    <img
-                                        src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
-                                        className="card-img-top" style={{width: '100%'}} alt={hero.name}></img>
+                            <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-1 p-sm-2 p-md-3"
+                                 key={hero.hero_id}>
+                                <div className="card">
+                                    <img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'}
+                                         className="card-img-top" alt={hero.name}></img>
                                     <div className="card-body">
                                         <h5 className="card-title">{hero.name}</h5>
                                         <p className="card-text">email: {hero.email}</p>
@@ -44,10 +44,11 @@ export class Heroes extends React.Component {
                         ))
                     }
                 </div>
-                <Pagination current={ this.state.currentPage} total={ this.state.totalCount}
-                            pageSize={ this.state.pageSize} onChange={this.handlePageChange} />
+                <Pagination current={this.state.currentPage} total={this.state.totalCount}
+                            pageSize={this.state.pageSize} onChange={this.handlePageChange}
+                            className="d-flex justify-content-center" />
             </div>
-        )
+        );
     }
 
     componentDidMount() {
